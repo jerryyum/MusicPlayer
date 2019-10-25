@@ -1,8 +1,8 @@
 //
-//  MusicPlayerViewController.h
+//  JYMusicPlayerViewController.h
 //  MusicPlayer
 //
-//  Created by miao yu on 2019/10/24.
+//  Created by miao yu on 2019/10/25.
 //  Copyright © 2019 jerryyum. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MusicPlayerViewController : UIViewController
+@interface JYMusicPlayerViewController : UIViewController
 
 @end
 

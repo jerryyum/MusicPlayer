@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iGd-Lp-8iQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -22,40 +22,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="133"/>
-        </scene>
-        <!--Music Player View Controller-->
-        <scene sceneID="z2V-LJ-Z5y">
-            <objects>
-                <viewController id="xRp-pF-ycz" customClass="MusicPlayerViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fVv-p9-TMP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="DUb-5o-9wx"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="mTg-Ac-dGM"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Aur-tY-uik" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1042.0289855072465" y="-538.39285714285711"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="nXa-nR-qOA">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iGd-Lp-8iQ" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5vj-oT-B1G">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="xRp-pF-ycz" kind="relationship" relationship="rootViewController" id="tMm-wk-XmM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ho0-BY-Ej3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="-538.39285714285711"/>
         </scene>
     </scenes>
 </document>
