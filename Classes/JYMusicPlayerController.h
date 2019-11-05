@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 播放器控制器，单一实例，提供音频播放器界面和相关控制
 @interface JYMusicPlayerController : UIViewController
+
++ (instancetype)sharedPlayerController;
 
 @end
 

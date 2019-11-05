@@ -36,8 +36,15 @@
                         <action selector="playButtonClicked:" destination="-1" eventType="touchUpInside" id="WhD-ZQ-qrI"/>
                     </connections>
                 </button>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HeF-vn-tEA">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HeF-vn-tEA">
                     <rect key="frame" x="18" y="84" width="378" height="31"/>
+                    <connections>
+                        <action selector="sliderTouchDown:" destination="-1" eventType="touchDown" id="VxK-hK-tSI"/>
+                        <action selector="sliderTouchUp:" destination="-1" eventType="touchCancel" id="ZAg-dz-WER"/>
+                        <action selector="sliderTouchUp:" destination="-1" eventType="touchUpOutside" id="mOr-bl-JkD"/>
+                        <action selector="sliderTouchUp:" destination="-1" eventType="touchUpInside" id="qgW-ei-HPY"/>
+                        <action selector="sliderValueChanged:" destination="-1" eventType="valueChanged" id="x1f-sK-qLs"/>
+                    </connections>
                 </slider>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqd-NE-DOT">
                     <rect key="frame" x="348" y="174" width="46" height="30"/>

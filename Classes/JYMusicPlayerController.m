@@ -8,10 +8,17 @@
 
 #import "JYMusicPlayerController.h"
 #import "JYMusicPlayer.h"
-
 #import <AVFoundation/AVFoundation.h>
 
 @interface JYMusicPlayerController ()
+
+@property (nonatomic, strong) JYMusicPlayer *musicPlayer;
+
+// 更新进度条的timer, 不是当前界面时不更新进度
+@property (nonatomic, strong) NSTimer *timer;
+
+// 是否正在拖动进度条
+@property (nonatomic, assign) BOOL draggingSlider;
 
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 
@@ -23,51 +30,127 @@
 
 @implementation JYMusicPlayerController
 
+#pragma mark - init
+
++ (void)setAudioSession {
+    // 设置后台播放功能，并调用 setActive 将会话激活才能起作用
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    NSError *error = nil;
+    if (![session setCategory:AVAudioSessionCategoryPlayback error:nil]) {
+        NSLog(@"SetCategory error: %@",[error localizedDescription]);
+    }
+    if (![session setActive:YES error:nil]) {
+        NSLog(@"SetActive error:%@",[error localizedDescription]);
+    }
+}
+
++ (instancetype)sharedPlayerController {
+    static JYMusicPlayerController *_controller = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self setAudioSession];
+        _controller = [[self alloc] init];
+    });
+    return _controller;
+}
+
+- (instancetype)init {
+    self = [super initWithNibName:nil bundle:nil];
+    return self;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setAudioSession];
-    [self loadSongs];
-    
-    
-}
-
-- (void)setAudioSession {
-    // 设置后台播放功能，并调用 setActive 将会话激活才能起作用
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-    [session setActive:YES error:nil];
-}
-
-- (void)loadSongs {
     NSArray<NSString *> *songs = @[@"王菲-平凡最浪漫.mp3",
                                    @"容易受伤的女人.mp3",
                                    @"Groove Coverage - God Is A Girl.mp3"];
     
-    [[JYMusicPlayer sharedPlayer] addSongs:songs];
+    self.musicPlayer = [[JYMusicPlayer alloc] init];
+    [self.musicPlayer addSongs:songs];
+    [self.musicPlayer play];
+    
+    [self createTimer];
 }
 
-#pragma mark - Observer
-
-- (void)addObserver {
-    
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self startTimer];
 }
 
-- (void)removeObserver {
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self stopTimer];
+}
+
+#pragma mark - Timer
+
+- (void)createTimer {
+    self.timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerFire:) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)startTimer {
+    if (!self.timer.isValid) {
+        [self.timer fire];
+    }
+}
+
+- (void)stopTimer {
+    if (self.timer.isValid) {
+        [self.timer invalidate];
+    }
+}
+
+- (void)timerFire:(id)sender {
+    if (_draggingSlider) {
+        return;
+    }
     
+    NSTimeInterval currentTime = self.musicPlayer.audioPlayer.currentTime;
+    NSTimeInterval duration = self.musicPlayer.audioPlayer.duration;
+    
+    self.slider.maximumValue = duration;
+    //self.slider.value = currentTime;
+    [self.slider setValue:currentTime animated:YES];
+    
+    NSLog(@"progress: %f/%f", currentTime, duration);
 }
 
 #pragma mark - Button Actions
 
 - (IBAction)prevButtonClicked:(id)sender {
-    [[JYMusicPlayer sharedPlayer] playPreSong];
-}
-- (IBAction)nextButtonClicked:(id)sender {
-    [[JYMusicPlayer sharedPlayer] playNextSong];
-}
-- (IBAction)playButtonClicked:(id)sender {
-    [[JYMusicPlayer sharedPlayer] changePlayStatus];
+    [self.musicPlayer playPrevSong];
 }
 
+- (IBAction)nextButtonClicked:(id)sender {
+    [self.musicPlayer playNextSong];
+}
+
+- (IBAction)playButtonClicked:(id)sender {
+    [self.musicPlayer changePlayStatus];
+}
+
+- (IBAction)sliderTouchDown:(id)sender {
+    _draggingSlider = YES;
+    [self.musicPlayer pause];
+}
+
+- (IBAction)sliderTouchUp:(id)sender {
+    _draggingSlider = NO;
+    NSTimeInterval time = _slider.value;
+    [self.musicPlayer playAtTime:time];
+}
+
+- (IBAction)sliderValueChanged:(id)sender {
+    if (!_draggingSlider)
+        return;
+    
+    // 更新_currentTimeLabel和_durationTimeLabel
+//    int position = _timeSlider.value;
+//    int duration = _timeSlider.maximumValue;
+
+}
 
 @end

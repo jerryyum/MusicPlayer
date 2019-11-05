@@ -2,13 +2,15 @@
 //  JYMusicPlayer.h
 //  MusicPlayer
 //
-//  Created by miao yu on 2019/10/25.
+//  Created by miao yu on 2019/11/5.
 //  Copyright © 2019 jerryyum. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
 #define INVALID_PLAYING_INDEX  -1 // 无效的播放索引
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,8 +21,14 @@ typedef NS_ENUM(NSInteger, PlayerLoopMode) {
     PlayerLoopSingle     = 2, /// 单曲循环
 };
 
+//@protocol JYMusicPlayerDelegate <NSObject>
+//
+//@optional
+//
+//@end
 
-/// 音乐播放器类，负责音乐播放、暂停、切换等
+/// 音乐播放器类，保存有歌曲，当前播放的序号，循环模式等。
+/// 需要 retain，否则会释放
 @interface JYMusicPlayer : NSObject
 
 /// 当前的歌曲列表
@@ -32,34 +40,34 @@ typedef NS_ENUM(NSInteger, PlayerLoopMode) {
 /// 歌曲播放循环模式
 @property (nonatomic, assign, readonly) PlayerLoopMode loopMode;
 
-#pragma mark - init
-
-+ (instancetype)sharedPlayer;
+/// 当前歌曲的播放器对象，切换歌曲时需要重新创建该对象
+@property (nonatomic, strong, readonly) AVAudioPlayer *audioPlayer;
 
 #pragma mark - Add Song
 
 /// 添加一首歌曲
 - (void)addSong:(NSString *)song;
 
-
 /// 添加多首歌曲
 /// @param songs 要添加的歌曲
 - (void)addSongs:(NSArray<NSString *> *)songs;
+
 
 #pragma mark - Player Operations
 
 - (void)play;
 - (void)pause;
-- (void)playPreSong;
+- (void)playPrevSong;
 - (void)playNextSong;
 - (void)playIndexSong:(NSInteger)index;
-
+- (void)playAtTime:(NSTimeInterval)time;
 
 /// 切换播放/暂停
 - (void)changePlayStatus;
 
 /// 修改循环模式
 - (void)changeLoopMode;
+
 
 @end
 

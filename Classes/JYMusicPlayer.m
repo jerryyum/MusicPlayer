@@ -2,15 +2,13 @@
 //  JYMusicPlayer.m
 //  MusicPlayer
 //
-//  Created by miao yu on 2019/10/25.
+//  Created by miao yu on 2019/11/5.
 //  Copyright © 2019 jerryyum. All rights reserved.
 //
 
 #import "JYMusicPlayer.h"
 
-#import <AVFoundation/AVFoundation.h>
-
-@interface JYMusicPlayer ()
+@interface JYMusicPlayer () <AVAudioPlayerDelegate>
 
 /// 当前的歌曲列表
 @property (nonatomic, strong) NSMutableArray<NSString *> *songs;
@@ -24,10 +22,32 @@
 
 @end
 
+
 @implementation JYMusicPlayer
 
-- (NSArray<NSString *> *)songs {
-    return [_songs copy];
+- (instancetype)init {
+    self = [super init];
+    _playingIdx = INVALID_PLAYING_INDEX;
+    _loopMode = PlayerLoopAll;
+    _songs = [NSMutableArray arrayWithCapacity:10];
+    return self;
+}
+
+- (void)dealloc {
+    if (_audioPlayer != nil) {
+        [_audioPlayer stop];
+        _audioPlayer = nil;
+    }
+}
+
+#pragma mark - Add Song
+
+- (void)addSong:(NSString *)song {
+    [_songs addObject:song];
+}
+
+- (void)addSongs:(NSArray<NSString *> *)songs {
+    [_songs addObjectsFromArray:songs];
 }
 
 /// 根据循环模式，产生下一个索引
@@ -50,42 +70,6 @@
         }
     }
     return nextIndex;
-}
-
-#pragma mark - init
-
-+ (instancetype)sharedPlayer {
-    static JYMusicPlayer *_player = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _player = [[JYMusicPlayer alloc] init];
-    });
-    return _player;
-}
-
-- (instancetype)init {
-    self = [super init];
-    _playingIdx = INVALID_PLAYING_INDEX;
-    _loopMode = PlayerLoopAll;
-    return self;
-}
-
-#pragma mark - Add Song
-
-- (void)addSong:(NSString *)song {
-    if (_songs != nil) {
-        [_songs addObject:song];
-    } else {
-        _songs = [NSMutableArray arrayWithObjects:song, nil];
-    }
-}
-
-- (void)addSongs:(NSArray<NSString *> *)songs {
-    if (_songs != nil) {
-        [_songs addObjectsFromArray:songs];
-    } else {
-        _songs = [songs mutableCopy];
-    }
 }
 
 #pragma mark - Player Operations
@@ -111,7 +95,7 @@
     }
 }
 
-- (void)playPreSong {
+- (void)playPrevSong {
     if (_songs == nil || _songs.count == 0) {
         NSLog(@"歌曲列表为空，请添加歌曲！");
         return;
@@ -150,16 +134,24 @@
     } else {
         if (_audioPlayer != nil) {
             [_audioPlayer stop];
+            _audioPlayer = nil;
         }
         
-        _audioPlayer = nil;
-        _playingIdx = index;
+        self.playingIdx = index;
         
         NSString *song = _songs[_playingIdx];
         NSURL *songURL = [[NSBundle mainBundle] URLForResource:song withExtension:nil subdirectory:@"Songs"];
         _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:songURL error:nil];
+        _audioPlayer.delegate = self;
         [_audioPlayer prepareToPlay];
         [_audioPlayer play];
+    }
+}
+
+- (void)playAtTime:(NSTimeInterval)time {
+    if (_audioPlayer != nil) {
+        NSTimeInterval now = _audioPlayer.deviceCurrentTime;
+        [_audioPlayer playAtTime:now + time];
     }
 }
 
@@ -188,6 +180,21 @@
         default:
             break;
     }
+}
+
+#pragma mark - AVAudioPlayerDelegate
+
+/* audioPlayerDidFinishPlaying:successfully: is called when a sound has finished playing. This method is NOT called if the player is stopped due to an interruption. */
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
+    
+    if (flag) {
+        [self playNextSong];
+    }
+}
+
+/* if an error occurs while decoding it will be reported to the delegate. */
+- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError * __nullable)error {
+    NSLog(@"播放器出错：%@", error);
 }
 
 @end

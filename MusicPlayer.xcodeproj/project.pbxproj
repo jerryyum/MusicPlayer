@@ -16,7 +16,7 @@
 		A3AF168D2351749B006C2B65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AF168C2351749B006C2B65 /* main.m */; };
 		A3B4902E23628CEA00C693EE /* JYMusicPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B4902C23628CEA00C693EE /* JYMusicPlayerController.m */; };
 		A3B4902F23628CEA00C693EE /* JYMusicPlayerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B4902D23628CEA00C693EE /* JYMusicPlayerController.xib */; };
-		A3B4903223628D6600C693EE /* JYMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B4903123628D6600C693EE /* JYMusicPlayer.m */; };
+		A3E3A29223716850005CE53A /* JYMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3A29123716850005CE53A /* JYMusicPlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +34,8 @@
 		A3B4902B23628CEA00C693EE /* JYMusicPlayerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYMusicPlayerController.h; sourceTree = "<group>"; };
 		A3B4902C23628CEA00C693EE /* JYMusicPlayerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYMusicPlayerController.m; sourceTree = "<group>"; };
 		A3B4902D23628CEA00C693EE /* JYMusicPlayerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYMusicPlayerController.xib; sourceTree = "<group>"; };
-		A3B4903023628D6600C693EE /* JYMusicPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYMusicPlayer.h; sourceTree = "<group>"; };
-		A3B4903123628D6600C693EE /* JYMusicPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYMusicPlayer.m; sourceTree = "<group>"; };
+		A3E3A29023716850005CE53A /* JYMusicPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYMusicPlayer.h; sourceTree = "<group>"; };
+		A3E3A29123716850005CE53A /* JYMusicPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYMusicPlayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,11 +86,11 @@
 		A3AF169323517620006C2B65 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A3E3A29023716850005CE53A /* JYMusicPlayer.h */,
+				A3E3A29123716850005CE53A /* JYMusicPlayer.m */,
 				A3B4902B23628CEA00C693EE /* JYMusicPlayerController.h */,
 				A3B4902C23628CEA00C693EE /* JYMusicPlayerController.m */,
 				A3B4902D23628CEA00C693EE /* JYMusicPlayerController.xib */,
-				A3B4903023628D6600C693EE /* JYMusicPlayer.h */,
-				A3B4903123628D6600C693EE /* JYMusicPlayer.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -167,7 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3B4903223628D6600C693EE /* JYMusicPlayer.m in Sources */,
+				A3E3A29223716850005CE53A /* JYMusicPlayer.m in Sources */,
 				A3AF168223517499006C2B65 /* ViewController.m in Sources */,
 				A3AF168D2351749B006C2B65 /* main.m in Sources */,
 				A3AF167F23517499006C2B65 /* AppDelegate.m in Sources */,
