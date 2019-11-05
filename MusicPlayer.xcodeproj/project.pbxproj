@@ -14,8 +14,8 @@
 		A3AF16872351749B006C2B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3AF16862351749B006C2B65 /* Assets.xcassets */; };
 		A3AF168A2351749B006C2B65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3AF16882351749B006C2B65 /* LaunchScreen.storyboard */; };
 		A3AF168D2351749B006C2B65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AF168C2351749B006C2B65 /* main.m */; };
-		A3B4902E23628CEA00C693EE /* JYMusicPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B4902C23628CEA00C693EE /* JYMusicPlayerViewController.m */; };
-		A3B4902F23628CEA00C693EE /* JYMusicPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B4902D23628CEA00C693EE /* JYMusicPlayerViewController.xib */; };
+		A3B4902E23628CEA00C693EE /* JYMusicPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B4902C23628CEA00C693EE /* JYMusicPlayerController.m */; };
+		A3B4902F23628CEA00C693EE /* JYMusicPlayerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B4902D23628CEA00C693EE /* JYMusicPlayerController.xib */; };
 		A3B4903223628D6600C693EE /* JYMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B4903123628D6600C693EE /* JYMusicPlayer.m */; };
 /* End PBXBuildFile section */
 
@@ -31,9 +31,9 @@
 		A3AF16892351749B006C2B65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3AF168B2351749B006C2B65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3AF168C2351749B006C2B65 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A3B4902B23628CEA00C693EE /* JYMusicPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYMusicPlayerViewController.h; sourceTree = "<group>"; };
-		A3B4902C23628CEA00C693EE /* JYMusicPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYMusicPlayerViewController.m; sourceTree = "<group>"; };
-		A3B4902D23628CEA00C693EE /* JYMusicPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYMusicPlayerViewController.xib; sourceTree = "<group>"; };
+		A3B4902B23628CEA00C693EE /* JYMusicPlayerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYMusicPlayerController.h; sourceTree = "<group>"; };
+		A3B4902C23628CEA00C693EE /* JYMusicPlayerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYMusicPlayerController.m; sourceTree = "<group>"; };
+		A3B4902D23628CEA00C693EE /* JYMusicPlayerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYMusicPlayerController.xib; sourceTree = "<group>"; };
 		A3B4903023628D6600C693EE /* JYMusicPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYMusicPlayer.h; sourceTree = "<group>"; };
 		A3B4903123628D6600C693EE /* JYMusicPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYMusicPlayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,9 +86,9 @@
 		A3AF169323517620006C2B65 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				A3B4902B23628CEA00C693EE /* JYMusicPlayerViewController.h */,
-				A3B4902C23628CEA00C693EE /* JYMusicPlayerViewController.m */,
-				A3B4902D23628CEA00C693EE /* JYMusicPlayerViewController.xib */,
+				A3B4902B23628CEA00C693EE /* JYMusicPlayerController.h */,
+				A3B4902C23628CEA00C693EE /* JYMusicPlayerController.m */,
+				A3B4902D23628CEA00C693EE /* JYMusicPlayerController.xib */,
 				A3B4903023628D6600C693EE /* JYMusicPlayer.h */,
 				A3B4903123628D6600C693EE /* JYMusicPlayer.m */,
 			);
@@ -154,7 +154,7 @@
 			files = (
 				A3AF168A2351749B006C2B65 /* LaunchScreen.storyboard in Resources */,
 				A3A0AA5523714DE7008FF674 /* Songs in Resources */,
-				A3B4902F23628CEA00C693EE /* JYMusicPlayerViewController.xib in Resources */,
+				A3B4902F23628CEA00C693EE /* JYMusicPlayerController.xib in Resources */,
 				A3AF16872351749B006C2B65 /* Assets.xcassets in Resources */,
 				A3AF168523517499006C2B65 /* Main.storyboard in Resources */,
 			);
@@ -171,7 +171,7 @@
 				A3AF168223517499006C2B65 /* ViewController.m in Sources */,
 				A3AF168D2351749B006C2B65 /* main.m in Sources */,
 				A3AF167F23517499006C2B65 /* AppDelegate.m in Sources */,
-				A3B4902E23628CEA00C693EE /* JYMusicPlayerViewController.m in Sources */,
+				A3B4902E23628CEA00C693EE /* JYMusicPlayerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

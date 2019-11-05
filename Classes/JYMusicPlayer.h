@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, PlayerLoopMode) {
 
 #pragma mark - init
 
-- (instancetype)init;
++ (instancetype)sharedPlayer;
 
 #pragma mark - Add Song
 
@@ -53,6 +53,10 @@ typedef NS_ENUM(NSInteger, PlayerLoopMode) {
 - (void)playPreSong;
 - (void)playNextSong;
 - (void)playIndexSong:(NSInteger)index;
+
+
+/// 切换播放/暂停
+- (void)changePlayStatus;
 
 /// 修改循环模式
 - (void)changeLoopMode;

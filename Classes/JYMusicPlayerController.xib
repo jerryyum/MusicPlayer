@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JYMusicPlayerController">
+            <connections>
+                <outlet property="nextButton" destination="aqd-NE-DOT" id="7CP-pK-9Bk"/>
+                <outlet property="playButton" destination="7sX-uJ-cmh" id="VZN-kx-8Hz"/>
+                <outlet property="prevButton" destination="LTY-Uc-pxh" id="ZoB-ca-BoE"/>
+                <outlet property="slider" destination="HeF-vn-tEA" id="IbB-H1-9a2"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTY-Uc-pxh">
+                    <rect key="frame" x="20" y="174" width="46" height="30"/>
+                    <state key="normal" title="上一曲"/>
+                    <connections>
+                        <action selector="prevButtonClicked:" destination="-1" eventType="touchUpInside" id="gpc-HF-s1m"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7sX-uJ-cmh">
+                    <rect key="frame" x="191.5" y="174" width="31" height="30"/>
+                    <state key="normal" title="播放"/>
+                    <connections>
+                        <action selector="playButtonClicked:" destination="-1" eventType="touchUpInside" id="WhD-ZQ-qrI"/>
+                    </connections>
+                </button>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HeF-vn-tEA">
+                    <rect key="frame" x="18" y="84" width="378" height="31"/>
+                </slider>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqd-NE-DOT">
+                    <rect key="frame" x="348" y="174" width="46" height="30"/>
+                    <state key="normal" title="下一曲"/>
+                    <connections>
+                        <action selector="nextButtonClicked:" destination="-1" eventType="touchUpInside" id="8mx-kS-Uvr"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="7sX-uJ-cmh" firstAttribute="top" secondItem="HeF-vn-tEA" secondAttribute="bottom" constant="60" id="1FU-ye-W6Y"/>
+                <constraint firstItem="LTY-Uc-pxh" firstAttribute="top" secondItem="HeF-vn-tEA" secondAttribute="bottom" constant="60" id="7B3-pE-cka"/>
+                <constraint firstItem="LTY-Uc-pxh" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="B1G-mc-c5d"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="HeF-vn-tEA" secondAttribute="trailing" constant="20" id="N32-ew-c5k"/>
+                <constraint firstItem="HeF-vn-tEA" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="20" id="Sze-BV-QO6"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="aqd-NE-DOT" secondAttribute="trailing" constant="20" id="duX-52-Cs2"/>
+                <constraint firstItem="7sX-uJ-cmh" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kVu-Cy-611"/>
+                <constraint firstItem="aqd-NE-DOT" firstAttribute="top" secondItem="HeF-vn-tEA" secondAttribute="bottom" constant="60" id="tnH-hu-SZW"/>
+                <constraint firstItem="HeF-vn-tEA" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="40" id="yia-au-bVk"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="131.8840579710145" y="123.88392857142857"/>
+        </view>
+    </objects>
+</document>

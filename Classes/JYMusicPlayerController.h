@@ -1,5 +1,5 @@
 //
-//  JYMusicPlayerViewController.h
+//  JYMusicPlayerController.h
 //  MusicPlayer
 //
 //  Created by miao yu on 2019/10/25.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JYMusicPlayerViewController : UIViewController
+@interface JYMusicPlayerController : UIViewController
 
 @end
 

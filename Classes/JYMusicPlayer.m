@@ -54,6 +54,15 @@
 
 #pragma mark - init
 
++ (instancetype)sharedPlayer {
+    static JYMusicPlayer *_player = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _player = [[JYMusicPlayer alloc] init];
+    });
+    return _player;
+}
+
 - (instancetype)init {
     self = [super init];
     _playingIdx = INVALID_PLAYING_INDEX;
@@ -151,6 +160,14 @@
         _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:songURL error:nil];
         [_audioPlayer prepareToPlay];
         [_audioPlayer play];
+    }
+}
+
+- (void)changePlayStatus {
+    if (_audioPlayer.isPlaying) {
+        [self pause];
+    } else {
+        [self play];
     }
 }
 
