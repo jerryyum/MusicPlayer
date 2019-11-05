@@ -104,7 +104,7 @@
 }
 
 - (void)timerFire:(id)sender {
-    if (_draggingSlider) {
+    if (_draggingSlider || !self.musicPlayer.audioPlayer.isPlaying) {
         return;
     }
     
