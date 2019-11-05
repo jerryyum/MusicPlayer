@@ -54,6 +54,7 @@ typedef NS_ENUM(NSInteger, PlayerLoopMode) {
 - (void)playNextSong;
 - (void)playIndexSong:(NSInteger)index;
 
+/// 修改循环模式
 - (void)changeLoopMode;
 
 @end

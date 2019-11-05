@@ -139,10 +139,15 @@
             [_audioPlayer play];
         }
     } else {
+        if (_audioPlayer != nil) {
+            [_audioPlayer stop];
+        }
+        
+        _audioPlayer = nil;
         _playingIdx = index;
         
         NSString *song = _songs[_playingIdx];
-        NSURL *songURL = [[NSBundle mainBundle] URLForResource:song withExtension:nil subdirectory:@"Resources"];
+        NSURL *songURL = [[NSBundle mainBundle] URLForResource:song withExtension:nil subdirectory:@"Songs"];
         _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:songURL error:nil];
         [_audioPlayer prepareToPlay];
         [_audioPlayer play];
