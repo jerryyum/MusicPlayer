@@ -16,13 +16,7 @@
 		A3B4902E23628CEA00C693EE /* JYMusicPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B4902C23628CEA00C693EE /* JYMusicPlayerViewController.m */; };
 		A3B4902F23628CEA00C693EE /* JYMusicPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B4902D23628CEA00C693EE /* JYMusicPlayerViewController.xib */; };
 		A3B4903223628D6600C693EE /* JYMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B4903123628D6600C693EE /* JYMusicPlayer.m */; };
-		A3E4EB6B236193160008AD13 /* 王菲-平凡最浪漫.krc in Resources */ = {isa = PBXBuildFile; fileRef = A3E4EB69236193160008AD13 /* 王菲-平凡最浪漫.krc */; };
-		A3E4EB6C236193160008AD13 /* 王菲-平凡最浪漫.lrc in Resources */ = {isa = PBXBuildFile; fileRef = A3E4EB6A236193160008AD13 /* 王菲-平凡最浪漫.lrc */; };
-		A3E4EB6F236197120008AD13 /* Groove Coverage - God Is A Girl.lrc in Resources */ = {isa = PBXBuildFile; fileRef = A3E4EB6D236197110008AD13 /* Groove Coverage - God Is A Girl.lrc */; };
-		A3E4EB70236197120008AD13 /* Groove Coverage - God Is A Girl.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A3E4EB6E236197120008AD13 /* Groove Coverage - God Is A Girl.mp3 */; };
-		A3E4EB73236197220008AD13 /* 容易受伤的女人.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A3E4EB71236197220008AD13 /* 容易受伤的女人.mp3 */; };
-		A3E4EB74236197220008AD13 /* 容易受伤的女人.lrc in Resources */ = {isa = PBXBuildFile; fileRef = A3E4EB72236197220008AD13 /* 容易受伤的女人.lrc */; };
-		A3E4EB762361988D0008AD13 /* 王菲-平凡最浪漫.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A3E4EB752361988D0008AD13 /* 王菲-平凡最浪漫.mp3 */; };
+		A3F4803723711F7700D23912 /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = A3F4803623711F7700D23912 /* Resources */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,13 +35,7 @@
 		A3B4902D23628CEA00C693EE /* JYMusicPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYMusicPlayerViewController.xib; sourceTree = "<group>"; };
 		A3B4903023628D6600C693EE /* JYMusicPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYMusicPlayer.h; sourceTree = "<group>"; };
 		A3B4903123628D6600C693EE /* JYMusicPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYMusicPlayer.m; sourceTree = "<group>"; };
-		A3E4EB69236193160008AD13 /* 王菲-平凡最浪漫.krc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "王菲-平凡最浪漫.krc"; sourceTree = "<group>"; };
-		A3E4EB6A236193160008AD13 /* 王菲-平凡最浪漫.lrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "王菲-平凡最浪漫.lrc"; sourceTree = "<group>"; };
-		A3E4EB6D236197110008AD13 /* Groove Coverage - God Is A Girl.lrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Groove Coverage - God Is A Girl.lrc"; sourceTree = "<group>"; };
-		A3E4EB6E236197120008AD13 /* Groove Coverage - God Is A Girl.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Groove Coverage - God Is A Girl.mp3"; sourceTree = "<group>"; };
-		A3E4EB71236197220008AD13 /* 容易受伤的女人.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "容易受伤的女人.mp3"; sourceTree = "<group>"; };
-		A3E4EB72236197220008AD13 /* 容易受伤的女人.lrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "容易受伤的女人.lrc"; sourceTree = "<group>"; };
-		A3E4EB752361988D0008AD13 /* 王菲-平凡最浪漫.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "王菲-平凡最浪漫.mp3"; sourceTree = "<group>"; };
+		A3F4803623711F7700D23912 /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +52,8 @@
 		A3AF167123517499006C2B65 = {
 			isa = PBXGroup;
 			children = (
+				A3F4803623711F7700D23912 /* Resources */,
 				A3AF169323517620006C2B65 /* Classes */,
-				A3AF169423517620006C2B65 /* Resources */,
 				A3AF167C23517499006C2B65 /* MusicPlayer */,
 				A3AF167B23517499006C2B65 /* Products */,
 			);
@@ -105,20 +93,6 @@
 				A3B4903123628D6600C693EE /* JYMusicPlayer.m */,
 			);
 			path = Classes;
-			sourceTree = "<group>";
-		};
-		A3AF169423517620006C2B65 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				A3E4EB6D236197110008AD13 /* Groove Coverage - God Is A Girl.lrc */,
-				A3E4EB6E236197120008AD13 /* Groove Coverage - God Is A Girl.mp3 */,
-				A3E4EB72236197220008AD13 /* 容易受伤的女人.lrc */,
-				A3E4EB71236197220008AD13 /* 容易受伤的女人.mp3 */,
-				A3E4EB69236193160008AD13 /* 王菲-平凡最浪漫.krc */,
-				A3E4EB6A236193160008AD13 /* 王菲-平凡最浪漫.lrc */,
-				A3E4EB752361988D0008AD13 /* 王菲-平凡最浪漫.mp3 */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,17 +152,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3E4EB70236197120008AD13 /* Groove Coverage - God Is A Girl.mp3 in Resources */,
-				A3E4EB73236197220008AD13 /* 容易受伤的女人.mp3 in Resources */,
 				A3AF168A2351749B006C2B65 /* LaunchScreen.storyboard in Resources */,
-				A3E4EB6B236193160008AD13 /* 王菲-平凡最浪漫.krc in Resources */,
 				A3B4902F23628CEA00C693EE /* JYMusicPlayerViewController.xib in Resources */,
-				A3E4EB6F236197120008AD13 /* Groove Coverage - God Is A Girl.lrc in Resources */,
 				A3AF16872351749B006C2B65 /* Assets.xcassets in Resources */,
-				A3E4EB6C236193160008AD13 /* 王菲-平凡最浪漫.lrc in Resources */,
-				A3E4EB762361988D0008AD13 /* 王菲-平凡最浪漫.mp3 in Resources */,
 				A3AF168523517499006C2B65 /* Main.storyboard in Resources */,
-				A3E4EB74236197220008AD13 /* 容易受伤的女人.lrc in Resources */,
+				A3F4803723711F7700D23912 /* Resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,11 +316,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 68FTAEX25T;
 				INFOPLIST_FILE = MusicPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jerryyum.MusicPlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chianyu.MusicPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -365,11 +334,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 68FTAEX25T;
 				INFOPLIST_FILE = MusicPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jerryyum.MusicPlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chianyu.MusicPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
