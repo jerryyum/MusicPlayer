@@ -36,7 +36,7 @@
     static JYMusicPlayerController *_controller = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _controller = [[self alloc] init];
+        _controller = [[JYMusicPlayerController alloc] initWithNibName:nil bundle:nil];
     });
     return _controller;
 }
@@ -53,7 +53,7 @@
     }
 }
 
-- (instancetype)init {
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nil bundle:nil];
     [self setAudioSession];
     return self;
@@ -141,7 +141,7 @@
 - (IBAction)sliderTouchUp:(id)sender {
     _draggingSlider = NO;
     NSTimeInterval time = _slider.value;
-    [self.musicPlayer playAtTime:time];
+    [self.musicPlayer playAtPosition:time];
 }
 
 - (IBAction)sliderValueChanged:(id)sender {

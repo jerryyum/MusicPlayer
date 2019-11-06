@@ -149,11 +149,10 @@
     }
 }
 
-- (void)playAtTime:(NSTimeInterval)time {
+- (void)playAtPosition:(NSTimeInterval)time {
     if (_audioPlayer != nil) {
-        NSTimeInterval now = _audioPlayer.deviceCurrentTime;
-        BOOL ret = [_audioPlayer playAtTime:now + time];
-        NSLog(@"playAtTime: %@", @(ret));
+        _audioPlayer.currentTime = time;
+        [_audioPlayer play];
     }
 }
 

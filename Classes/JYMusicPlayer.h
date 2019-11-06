@@ -21,11 +21,6 @@ typedef NS_ENUM(NSInteger, PlayerLoopMode) {
     PlayerLoopSingle     = 2, /// 单曲循环
 };
 
-//@protocol JYMusicPlayerDelegate <NSObject>
-//
-//@optional
-//
-//@end
 
 /// 音乐播放器类，保存有歌曲，当前播放的序号，循环模式等。
 /// 需要 retain，否则会释放
@@ -60,7 +55,7 @@ typedef NS_ENUM(NSInteger, PlayerLoopMode) {
 - (void)playPrevSong;
 - (void)playNextSong;
 - (void)playIndexSong:(NSInteger)index;
-- (void)playAtTime:(NSTimeInterval)time;
+- (void)playAtPosition:(NSTimeInterval)time;
 
 /// 切换播放/暂停
 - (void)changePlayStatus;
