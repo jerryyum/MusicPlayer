@@ -23,6 +23,7 @@ typedef NS_ENUM(NSInteger, PlayerLoopMode) {
 
 
 /// 音乐播放器类，保存有歌曲，当前播放的序号，循环模式等。
+/// 播放器使用 AvAudioPlayer 不支持网络歌曲
 /// 需要 retain，否则会释放
 @interface JYMusicPlayer : NSObject
 
@@ -37,6 +38,9 @@ typedef NS_ENUM(NSInteger, PlayerLoopMode) {
 
 /// 当前歌曲的播放器对象，切换歌曲时需要重新创建该对象
 @property (nonatomic, strong, readonly) AVAudioPlayer *audioPlayer;
+
+/// 是否正在播放
+@property (nonatomic, assign, readonly) BOOL isPlaying;
 
 #pragma mark - Add Song
 

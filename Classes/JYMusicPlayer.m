@@ -20,6 +20,9 @@
 /// 当前歌曲的播放器对象，切换歌曲时需要重新创建该对象
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 
+/// 是否正在播放
+@property (nonatomic, assign) BOOL isPlaying;
+
 @end
 
 
@@ -28,6 +31,7 @@
 - (instancetype)init {
     self = [super init];
     _playingIdx = INVALID_PLAYING_INDEX;
+    _isPlaying = NO;
     _loopMode = PlayerLoopAll;
     _songs = [NSMutableArray arrayWithCapacity:10];
     return self;
@@ -92,6 +96,7 @@
 - (void)pause {
     if (_audioPlayer.isPlaying) {
         [_audioPlayer pause];
+        self.isPlaying = NO;
     }
 }
 
@@ -147,12 +152,19 @@
         [_audioPlayer prepareToPlay];
         [_audioPlayer play];
     }
+    
+    self.isPlaying = YES;
 }
 
 - (void)playAtPosition:(NSTimeInterval)time {
     if (_audioPlayer != nil) {
-        _audioPlayer.currentTime = time;
-        [_audioPlayer play];
+        if (time + 0.5 < _audioPlayer.duration) {
+            _audioPlayer.currentTime = time;
+            [_audioPlayer play];
+            self.isPlaying = YES;
+        } else {
+            [self playNextSong];
+        }
     }
 }
 
@@ -188,7 +200,9 @@
 /* audioPlayerDidFinishPlaying:successfully: is called when a sound has finished playing. This method is NOT called if the player is stopped due to an interruption. */
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
     
+    NSLog(@"**** play ended !!!");
     if (flag) {
+        
         [self playNextSong];
     }
 }
