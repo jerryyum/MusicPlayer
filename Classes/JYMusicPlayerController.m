@@ -32,7 +32,16 @@
 
 #pragma mark - init
 
-+ (void)setAudioSession {
++ (instancetype)sharedPlayerController {
+    static JYMusicPlayerController *_controller = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _controller = [[self alloc] init];
+    });
+    return _controller;
+}
+
+- (void)setAudioSession {
     // 设置后台播放功能，并调用 setActive 将会话激活才能起作用
     AVAudioSession *session = [AVAudioSession sharedInstance];
     NSError *error = nil;
@@ -44,21 +53,11 @@
     }
 }
 
-+ (instancetype)sharedPlayerController {
-    static JYMusicPlayerController *_controller = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self setAudioSession];
-        _controller = [[self alloc] init];
-    });
-    return _controller;
-}
-
 - (instancetype)init {
     self = [super initWithNibName:nil bundle:nil];
+    [self setAudioSession];
     return self;
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -129,6 +128,8 @@
 }
 
 - (IBAction)playButtonClicked:(id)sender {
+    NSString *title = self.musicPlayer.audioPlayer.isPlaying ? @"播放" : @"暂停";
+    [_playButton setTitle:title forState:UIControlStateNormal];
     [self.musicPlayer changePlayStatus];
 }
 

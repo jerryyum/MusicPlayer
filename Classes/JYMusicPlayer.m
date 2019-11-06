@@ -142,6 +142,7 @@
         NSString *song = _songs[_playingIdx];
         NSURL *songURL = [[NSBundle mainBundle] URLForResource:song withExtension:nil subdirectory:@"Songs"];
         _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:songURL error:nil];
+        _audioPlayer.volume = 1.f;
         _audioPlayer.delegate = self;
         [_audioPlayer prepareToPlay];
         [_audioPlayer play];
@@ -151,7 +152,8 @@
 - (void)playAtTime:(NSTimeInterval)time {
     if (_audioPlayer != nil) {
         NSTimeInterval now = _audioPlayer.deviceCurrentTime;
-        [_audioPlayer playAtTime:now + time];
+        BOOL ret = [_audioPlayer playAtTime:now + time];
+        NSLog(@"playAtTime: %@", @(ret));
     }
 }
 

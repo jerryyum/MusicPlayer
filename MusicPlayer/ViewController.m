@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    JYMusicPlayerController *controller = [[JYMusicPlayerController alloc] initWithNibName:nil bundle:nil];
+    JYMusicPlayerController *controller = [JYMusicPlayerController sharedPlayerController];
     controller.view.frame = self.view.bounds;
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:controller.view];
