@@ -11,48 +11,65 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- krc歌词的最小的单元(单个字及时间段), 时间的单位都是ms
+ krc 歌词的最小的单元(单个字及时间段), 时间的单位都是 ms
+ 示例: <0,200,0>王
  */
 @interface JYKrcAtom : NSObject
 
-@property (assign, nonatomic) int startTime;// 单元歌词开始时间, 从该行歌词起点开始计算
-@property (assign, nonatomic) int spanTime; // 单元歌词持续时间
-@property (assign, nonatomic) int reverse;  // 保留字段
-@property (copy, nonatomic) NSString *atomStr;  // 单元歌词的内容
+@property (nonatomic, assign) int startTime;    // 单元歌词开始时间, 从该行歌词起点开始计算
+@property (nonatomic, assign) int spanTime;     // 单元歌词持续时间
+@property (nonatomic, assign) int reverse;      // 保留字段, 为0
+@property (nonatomic, copy) NSString *atomText; // 单元歌词的内容
 
 @end
 
 /**
  krc单句歌词模型, 该句开始时间+持续时间+该句逐字显示信息
+ 示例: [2635,1750]<0,200,0>王<200,250,0>菲 <450,150,0>- <600,200,0>平<800,200,0>凡<1000,200,0>最<1200,200,0>浪<1400,350,0>漫
  */
 @interface JYKrcLine : NSObject
 
-@property (assign, nonatomic) int startTime;// 歌词行开始时间, 从歌曲起点开始计算
-@property (assign, nonatomic) int spanTime; // 歌词行持续时间
-@property (strong, nonatomic) NSMutableArray<JYKrcAtom *> *krcAtomArray;
+@property (nonatomic, assign) int startTime; // 歌词行开始时间, 从歌曲起点开始计算
+@property (nonatomic, assign) int spanTime;  // 歌词行持续时间
+@property (nonatomic, strong) NSMutableArray<JYKrcAtom *> *krcAtoms; // 一行歌词包含的基本段
 
-// 获取该行的歌词字符串
-- (NSString *)getKrcLineStr;
+/// 获取该行的歌词字符串
+- (NSString *)getKrcLineText;
 
-// 获取该行歌词中索引为[0,index)的字符串
-- (NSString *)getKrcStrToIndex:(NSInteger)index;
+/// 获取该行歌词中索引为 [0,index) 的字符串
+/// @param index 结束位置的索引
+- (NSString *)getKrcLineTextToIndex:(NSInteger)index;
 
 @end
 
 /**
- krc格式歌词信息, 与lrc相比, 歌词时间精确到每个字, 弥补了lrc逐字精确显示的不足
+ 整首歌曲的 krc 格式歌词信息.
+ 与 lrc 相比, 歌词时间精确到每个字, 弥补了 lrc 逐字精确显示的不足.
+ 示例:
+ [id:$00000000]
+ [ar:王菲]
+ [ti:平凡最浪漫]
+ [by:]
+ [hash:d807ade477f451e207aaead21b2ac685]
+ [al:]
+ [sign:]
+ [total:262482]
+ [offset:0]
+ [2635,1750]<0,200,0>王<200,250,0>菲 <450,150,0>- <600,200,0>平<800,200,0>凡<1000,200,0>最<1200,200,0>浪<1400,350,0>漫
  */
 @interface JYKrcInfo : NSObject
 
-@property (copy, nonatomic) NSString *title;   // 歌曲名
-@property (copy, nonatomic) NSString *singer;  // 演唱者
-@property (copy, nonatomic) NSString *album;   // 专辑
-@property (copy, nonatomic) NSString *language;// 语言
+@property (nonatomic, copy) NSString *title;   // 歌曲名
+@property (nonatomic, copy) NSString *artist;  // 艺术家
+@property (nonatomic, copy) NSString *album;   // 专辑
+@property (nonatomic, copy) NSString *language;// 语言
+@property (nonatomic, assign) int offset;      // 全局偏移量
 
-@property (strong, nonatomic) NSMutableArray<JYKrcLine *> *krcLineArray;
+@property (nonatomic, strong) NSMutableArray<JYKrcLine *> *krcLines; // 整首krc包含的歌词行
 
-- (instancetype)initWithKrcContent:(NSString *)krcContent; // krcContent为歌词文件内容
-- (instancetype)initWithKrcPath:(NSString *)krcPath;       // krcPath为歌词文件路径
+/// 根据文件内容构造整个krc信息
+/// @param content 为歌词文件内容
+- (instancetype)initWithKrcContent:(NSString *)content;
 
 @end
 
