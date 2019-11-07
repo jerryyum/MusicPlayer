@@ -11,11 +11,15 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JYMusicPlayerController">
             <connections>
                 <outlet property="backgroundImageView" destination="1DT-ne-oh5" id="WSv-TI-0ra"/>
+                <outlet property="currentTimeLabel" destination="CJB-n0-RoX" id="tqg-jG-ffy"/>
+                <outlet property="durationLabel" destination="od2-wg-yei" id="mSa-hU-go5"/>
                 <outlet property="effectView" destination="oyK-zb-JH8" id="z2m-Xv-frj"/>
+                <outlet property="listButton" destination="peG-KV-wuU" id="Wh1-BA-9vw"/>
+                <outlet property="loopButton" destination="LIR-qs-XZa" id="iQK-C3-2jb"/>
                 <outlet property="nextButton" destination="aqd-NE-DOT" id="7CP-pK-9Bk"/>
                 <outlet property="playButton" destination="7sX-uJ-cmh" id="VZN-kx-8Hz"/>
                 <outlet property="prevButton" destination="LTY-Uc-pxh" id="ZoB-ca-BoE"/>
-                <outlet property="slider" destination="HeF-vn-tEA" id="IbB-H1-9a2"/>
+                <outlet property="timeSlider" destination="HeF-vn-tEA" id="IbB-H1-9a2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -39,45 +43,51 @@
                     <blurEffect style="dark"/>
                 </visualEffectView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zxd-Rc-D24">
-                    <rect key="frame" x="0.0" y="622" width="414" height="200"/>
+                    <rect key="frame" x="0.0" y="622" width="414" height="220"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LIR-qs-XZa">
-                            <rect key="frame" x="8" y="120.33333333333337" width="40.666666666666664" height="28"/>
-                            <state key="normal" image="cm2_play_btn_loop"/>
+                            <rect key="frame" x="-2.6666666666666643" y="85" width="88" height="88"/>
+                            <state key="normal" image="cm2_icn_loop"/>
+                            <connections>
+                                <action selector="loopButtonClicked:" destination="-1" eventType="touchUpInside" id="6a4-q6-jEJ"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTY-Uc-pxh">
-                            <rect key="frame" x="56.666666666666664" y="110" width="81.333333333333343" height="49"/>
-                            <state key="normal" image="btn_prev"/>
+                            <rect key="frame" x="65" y="80" width="98" height="98"/>
+                            <state key="normal" image="cm2_play_btn_prev"/>
                             <connections>
                                 <action selector="prevButtonClicked:" destination="-1" eventType="touchUpInside" id="gpc-HF-s1m"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7sX-uJ-cmh">
-                            <rect key="frame" x="146" y="76.666666666666629" width="122" height="115.33333333333331"/>
-                            <state key="normal" image="btn_play"/>
+                            <rect key="frame" x="124" y="46" width="166" height="166"/>
+                            <state key="normal" image="cm2_runfm_btn_play"/>
                             <connections>
                                 <action selector="playButtonClicked:" destination="-1" eventType="touchUpInside" id="WhD-ZQ-qrI"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="peG-KV-wuU">
-                            <rect key="frame" x="365.33333333333331" y="120.33333333333337" width="40.666666666666686" height="28"/>
-                            <state key="normal" image="cm2_play_btn_order"/>
+                            <rect key="frame" x="328.66666666666669" y="85" width="88" height="88"/>
+                            <state key="normal" image="cm2_icn_list"/>
+                            <connections>
+                                <action selector="listButtonClicked:" destination="-1" eventType="touchUpInside" id="RTu-SL-Hme"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqd-NE-DOT">
-                            <rect key="frame" x="276" y="110" width="81.333333333333314" height="49"/>
-                            <state key="normal" image="btn_next"/>
+                            <rect key="frame" x="246" y="75" width="108" height="108"/>
+                            <state key="normal" image="cm2_runfm_btn_next"/>
                             <connections>
                                 <action selector="nextButtonClicked:" destination="-1" eventType="touchUpInside" id="8mx-kS-Uvr"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od2-wg-yei">
-                            <rect key="frame" x="372" y="46.333333333333371" width="34" height="15"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <rect key="frame" x="377" y="17" width="29" height="12"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HeF-vn-tEA">
-                            <rect key="frame" x="48" y="38.666666666666629" width="318" height="31"/>
+                            <rect key="frame" x="43" y="8" width="328" height="31"/>
                             <connections>
                                 <action selector="sliderTouchDown:" destination="-1" eventType="touchDown" id="VxK-hK-tSI"/>
                                 <action selector="sliderTouchUp:" destination="-1" eventType="touchCancel" id="ZAg-dz-WER"/>
@@ -87,8 +97,8 @@
                             </connections>
                         </slider>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJB-n0-RoX">
-                            <rect key="frame" x="8" y="46.333333333333371" width="34" height="15"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <rect key="frame" x="8" y="17" width="29" height="12"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -98,25 +108,19 @@
                         <constraint firstItem="aqd-NE-DOT" firstAttribute="centerY" secondItem="LIR-qs-XZa" secondAttribute="centerY" id="1fa-2k-vm3"/>
                         <constraint firstItem="7sX-uJ-cmh" firstAttribute="centerX" secondItem="Zxd-Rc-D24" secondAttribute="centerX" id="7MI-cq-yql"/>
                         <constraint firstAttribute="bottom" secondItem="7sX-uJ-cmh" secondAttribute="bottom" constant="8" id="7zg-qa-FEg"/>
-                        <constraint firstItem="7sX-uJ-cmh" firstAttribute="leading" secondItem="LTY-Uc-pxh" secondAttribute="trailing" constant="8" id="9yW-Wf-4O8"/>
-                        <constraint firstItem="peG-KV-wuU" firstAttribute="leading" secondItem="aqd-NE-DOT" secondAttribute="trailing" constant="8" id="B4D-ik-1yK"/>
+                        <constraint firstItem="LTY-Uc-pxh" firstAttribute="centerX" secondItem="Zxd-Rc-D24" secondAttribute="centerX" multiplier="0.55" id="8DT-Ps-r0O"/>
                         <constraint firstItem="CJB-n0-RoX" firstAttribute="leading" secondItem="Zxd-Rc-D24" secondAttribute="leading" constant="8" id="BOJ-Kl-JBk"/>
-                        <constraint firstItem="LTY-Uc-pxh" firstAttribute="width" secondItem="LIR-qs-XZa" secondAttribute="width" multiplier="2" id="CZE-hf-Mu9"/>
-                        <constraint firstItem="7sX-uJ-cmh" firstAttribute="width" secondItem="LIR-qs-XZa" secondAttribute="width" multiplier="3" id="GN7-FA-UN2"/>
                         <constraint firstItem="HeF-vn-tEA" firstAttribute="centerY" secondItem="CJB-n0-RoX" secondAttribute="centerY" id="IJa-EU-CZ9"/>
                         <constraint firstItem="peG-KV-wuU" firstAttribute="centerY" secondItem="LIR-qs-XZa" secondAttribute="centerY" id="K8D-YN-xpX"/>
-                        <constraint firstItem="LIR-qs-XZa" firstAttribute="leading" secondItem="Zxd-Rc-D24" secondAttribute="leading" constant="8" id="LX4-Sl-Ye7"/>
-                        <constraint firstItem="LTY-Uc-pxh" firstAttribute="leading" secondItem="LIR-qs-XZa" secondAttribute="trailing" constant="8" id="On3-sS-7bv"/>
+                        <constraint firstItem="LIR-qs-XZa" firstAttribute="centerX" secondItem="Zxd-Rc-D24" secondAttribute="centerX" multiplier="0.2" id="Ntn-KW-1O0"/>
                         <constraint firstItem="7sX-uJ-cmh" firstAttribute="top" secondItem="HeF-vn-tEA" secondAttribute="bottom" constant="8" id="S7T-oc-QYU"/>
-                        <constraint firstItem="aqd-NE-DOT" firstAttribute="leading" secondItem="7sX-uJ-cmh" secondAttribute="trailing" constant="8" id="SDr-DR-KRM"/>
-                        <constraint firstAttribute="trailing" secondItem="peG-KV-wuU" secondAttribute="trailing" constant="8" id="TV5-Zt-Zf4"/>
                         <constraint firstItem="od2-wg-yei" firstAttribute="leading" secondItem="HeF-vn-tEA" secondAttribute="trailing" constant="8" id="UHp-6T-4Az"/>
-                        <constraint firstItem="aqd-NE-DOT" firstAttribute="width" secondItem="LIR-qs-XZa" secondAttribute="width" multiplier="2" id="Wlw-rc-ZTu"/>
-                        <constraint firstItem="peG-KV-wuU" firstAttribute="width" secondItem="LIR-qs-XZa" secondAttribute="width" id="Xr4-cw-vGN"/>
+                        <constraint firstItem="peG-KV-wuU" firstAttribute="centerX" secondItem="Zxd-Rc-D24" secondAttribute="centerX" multiplier="1.8" id="VKu-Cn-1Qc"/>
                         <constraint firstItem="7sX-uJ-cmh" firstAttribute="centerY" secondItem="LIR-qs-XZa" secondAttribute="centerY" id="czl-Sj-JUH"/>
                         <constraint firstItem="HeF-vn-tEA" firstAttribute="leading" secondItem="CJB-n0-RoX" secondAttribute="trailing" constant="8" id="ggC-74-ttM"/>
-                        <constraint firstAttribute="height" constant="200" id="lBo-mS-BDm"/>
+                        <constraint firstItem="HeF-vn-tEA" firstAttribute="top" secondItem="Zxd-Rc-D24" secondAttribute="top" constant="8" id="nDX-gm-u3j"/>
                         <constraint firstItem="LTY-Uc-pxh" firstAttribute="centerY" secondItem="LIR-qs-XZa" secondAttribute="centerY" id="p7p-iN-T5Y"/>
+                        <constraint firstItem="aqd-NE-DOT" firstAttribute="centerX" secondItem="Zxd-Rc-D24" secondAttribute="centerX" multiplier="1.45" id="qDb-jX-Wmr"/>
                         <constraint firstAttribute="trailing" secondItem="od2-wg-yei" secondAttribute="trailing" constant="8" id="rCD-2h-WMo"/>
                         <constraint firstItem="od2-wg-yei" firstAttribute="centerY" secondItem="CJB-n0-RoX" secondAttribute="centerY" id="w3K-M2-1sq"/>
                     </constraints>
@@ -126,18 +130,18 @@
             <constraints>
                 <constraint firstItem="Zxd-Rc-D24" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="6w3-Lf-xWZ"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Zxd-Rc-D24" secondAttribute="trailing" id="qVA-NJ-krY"/>
-                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="Zxd-Rc-D24" secondAttribute="bottom" constant="40" id="wum-yG-5Up"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="Zxd-Rc-D24" secondAttribute="bottom" constant="20" id="wum-yG-5Up"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="131.8840579710145" y="123.88392857142857"/>
         </view>
     </objects>
     <resources>
-        <image name="btn_next" width="49" height="49"/>
-        <image name="btn_play" width="115.33333587646484" height="115.33333587646484"/>
-        <image name="btn_prev" width="49" height="49"/>
-        <image name="cm2_play_btn_loop" width="28" height="28"/>
-        <image name="cm2_play_btn_order" width="28" height="28"/>
+        <image name="cm2_icn_list" width="44" height="44"/>
+        <image name="cm2_icn_loop" width="44" height="44"/>
+        <image name="cm2_play_btn_prev" width="49" height="49"/>
+        <image name="cm2_runfm_btn_next" width="54" height="54"/>
+        <image name="cm2_runfm_btn_play" width="83" height="83"/>
         <image name="player_background2" width="720" height="800"/>
     </resources>
 </document>

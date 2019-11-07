@@ -23,11 +23,15 @@
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *effectView;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
-@property (weak, nonatomic) IBOutlet UISlider *slider;
+@property (weak, nonatomic) IBOutlet UISlider *timeSlider;
+@property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *durationLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *prevButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIButton *loopButton;
+@property (weak, nonatomic) IBOutlet UIButton *listButton;
 
 @end
 
@@ -79,8 +83,6 @@
     
     // 接收音频控制事件(耳机操作)
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-    
-    self.effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
 }
 
 - (void)dealloc {
@@ -104,6 +106,7 @@
 
 - (void)addObserver {
     [self addObserver:self forKeyPath:@"self.musicPlayer.isPlaying" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:nil];
+    [self addObserver:self forKeyPath:@"self.musicPlayer.loopMode" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:nil];
     
     // 监视拔出耳机后暂停播放
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(routeChange:) name:AVAudioSessionRouteChangeNotification object:nil];
@@ -111,19 +114,30 @@
 
 - (void)removeObserver {
     [self removeObserver:self forKeyPath:@"self.musicPlayer.isPlaying" context:nil];
+    [self removeObserver:self forKeyPath:@"self.musicPlayer.loopMode" context:nil];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionRouteChangeNotification object:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
 
-    if (object == self && [keyPath isEqualToString:@"self.musicPlayer.isPlaying"]) {
-        BOOL isPlaying = [change[NSKeyValueChangeNewKey] boolValue];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *imageName = isPlaying ? @"btn_pause" : @"btn_play";
-            UIImage *image = [UIImage imageNamed:imageName];
-            [self.playButton setImage:image forState:UIControlStateNormal];
-        });
+    if (object == self) {
+        if ([keyPath isEqualToString:@"self.musicPlayer.isPlaying"]) {
+            BOOL isPlaying = [change[NSKeyValueChangeNewKey] boolValue];
+            NSString *imageName = isPlaying ? @"cm2_runfm_btn_pause" : @"cm2_runfm_btn_play";
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIImage *image = [UIImage imageNamed:imageName];
+                [self.playButton setImage:image forState:UIControlStateNormal];
+            });
+            
+        } else if ([keyPath isEqualToString:@"self.musicPlayer.loopMode"]) {
+            PlayerLoopMode loopMode = [change[NSKeyValueChangeNewKey] integerValue];
+            NSString *imageName = loopMode==PlayerLoopAll ? @"cm2_icn_loop" : (loopMode==PlayerLoopShuffle ? @"cm2_icn_shuffle" : @"cm2_icn_one");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIImage *image = [UIImage imageNamed:imageName];
+                [self.loopButton setImage:image forState:UIControlStateNormal];
+            });
+        }
     }
 }
 
@@ -173,11 +187,30 @@
     NSTimeInterval currentTime = self.musicPlayer.audioPlayer.currentTime;
     NSTimeInterval duration = self.musicPlayer.audioPlayer.duration;
     
-    self.slider.maximumValue = duration;
+    self.timeSlider.maximumValue = duration;
     //self.slider.value = currentTime;
-    [self.slider setValue:currentTime animated:YES];
+    [self.timeSlider setValue:currentTime animated:YES];
     
-    //NSLog(@"progress: %f/%f", currentTime, duration);
+    NSString *position_txt = @"00:00";
+    NSString *duration_txt = @"00:00";
+    int pos = currentTime;
+    int dur = duration;
+    
+    if (pos >= 0) {
+        int minutes = (pos / 60) % 60;
+        int seconds = pos % 60;
+        position_txt = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
+    }
+    if (dur >= 0) {
+        int minutes = (dur / 60) % 60;
+        int seconds = dur % 60;
+        duration_txt = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.currentTimeLabel.text = position_txt;
+        self.durationLabel.text = duration_txt;
+    });
 }
 
 #pragma mark - RemoteControl Events
@@ -229,6 +262,14 @@
     [self.musicPlayer changePlayStatus];
 }
 
+- (IBAction)loopButtonClicked:(id)sender {
+    [self.musicPlayer changeLoopMode];
+}
+
+- (IBAction)listButtonClicked:(id)sender {
+    
+}
+
 - (IBAction)sliderTouchDown:(id)sender {
     _draggingSlider = YES;
     [self.musicPlayer pause];
@@ -236,7 +277,7 @@
 
 - (IBAction)sliderTouchUp:(id)sender {
     _draggingSlider = NO;
-    NSTimeInterval time = _slider.value;
+    NSTimeInterval time = _timeSlider.value;
     [self.musicPlayer playAtPosition:time];
 }
 
@@ -244,9 +285,16 @@
     if (!_draggingSlider)
         return;
     
-    // 更新_currentTimeLabel
-//    int position = _timeSlider.value;
-
+    // 更新 currentTimeLabel
+    NSTimeInterval currentTime = self.timeSlider.value;
+    NSString *position_txt = @"00:00";
+    int pos = currentTime;
+    if (pos >= 0) {
+        int minutes = (pos / 60) % 60;
+        int seconds = pos % 60;
+        position_txt = [NSString stringWithFormat:@"%02d:%02d", minutes, seconds];
+    }
+    self.currentTimeLabel.text = position_txt;
 }
 
 @end
