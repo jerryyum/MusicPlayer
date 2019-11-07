@@ -62,51 +62,55 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zxd-Rc-D24">
-                    <rect key="frame" x="0.0" y="622" width="414" height="220"/>
+                    <rect key="frame" x="0.0" y="705" width="414" height="137"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LIR-qs-XZa">
-                            <rect key="frame" x="-2.5" y="85" width="88" height="88"/>
+                            <rect key="frame" x="19.5" y="65.5" width="44" height="44"/>
                             <state key="normal" image="cm2_icn_loop"/>
                             <connections>
                                 <action selector="loopButtonClicked:" destination="-1" eventType="touchUpInside" id="6a4-q6-jEJ"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTY-Uc-pxh">
-                            <rect key="frame" x="65" y="80" width="98" height="98"/>
+                            <rect key="frame" x="89.5" y="63" width="49" height="49"/>
                             <state key="normal" image="cm2_play_btn_prev"/>
                             <connections>
                                 <action selector="prevButtonClicked:" destination="-1" eventType="touchUpInside" id="gpc-HF-s1m"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7sX-uJ-cmh">
-                            <rect key="frame" x="124" y="46" width="166" height="166"/>
+                            <rect key="frame" x="165.5" y="46" width="83" height="83"/>
                             <state key="normal" image="cm2_runfm_btn_play"/>
                             <connections>
                                 <action selector="playButtonClicked:" destination="-1" eventType="touchUpInside" id="WhD-ZQ-qrI"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="peG-KV-wuU">
-                            <rect key="frame" x="328.5" y="85" width="88" height="88"/>
+                            <rect key="frame" x="350.5" y="65.5" width="44" height="44"/>
                             <state key="normal" image="cm2_icn_list"/>
                             <connections>
                                 <action selector="listButtonClicked:" destination="-1" eventType="touchUpInside" id="RTu-SL-Hme"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqd-NE-DOT">
-                            <rect key="frame" x="246" y="75" width="108" height="108"/>
+                            <rect key="frame" x="273" y="60.5" width="54" height="54"/>
                             <state key="normal" image="cm2_runfm_btn_next"/>
                             <connections>
                                 <action selector="nextButtonClicked:" destination="-1" eventType="touchUpInside" id="8mx-kS-Uvr"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="od2-wg-yei">
-                            <rect key="frame" x="377" y="17" width="29" height="12"/>
+                            <rect key="frame" x="374" y="17" width="32" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="32" id="GhU-lo-dya"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HeF-vn-tEA">
-                            <rect key="frame" x="43" y="8" width="328" height="31"/>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HeF-vn-tEA">
+                            <rect key="frame" x="46" y="8" width="322" height="31"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="sliderTouchDown:" destination="-1" eventType="touchDown" id="VxK-hK-tSI"/>
                                 <action selector="sliderTouchUp:" destination="-1" eventType="touchCancel" id="ZAg-dz-WER"/>
@@ -116,7 +120,10 @@
                             </connections>
                         </slider>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJB-n0-RoX">
-                            <rect key="frame" x="8" y="17" width="29" height="12"/>
+                            <rect key="frame" x="8" y="17" width="32" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="32" id="k2B-qW-4yU"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>

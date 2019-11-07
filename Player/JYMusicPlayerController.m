@@ -41,10 +41,16 @@
 
 #pragma mark - init
 
++ (void)setAppearence {
+    // 设置UISlider的小圆点为统一样式
+    [[UISlider appearance] setThumbImage:[UIImage imageNamed:@"slider_dot"] forState:UIControlStateNormal];
+}
+
 + (instancetype)sharedPlayerController {
     static JYMusicPlayerController *_controller = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        [JYMusicPlayerController setAppearence];
         _controller = [[JYMusicPlayerController alloc] initWithNibName:nil bundle:nil];
     });
     return _controller;
@@ -85,6 +91,8 @@
     
     // 接收音频控制事件(耳机操作)
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    
+    self.timeSlider.value = 0;
 }
 
 - (void)dealloc {
