@@ -20,6 +20,9 @@
 // 是否正在拖动进度条
 @property (nonatomic, assign) BOOL draggingSlider;
 
+@property (weak, nonatomic) IBOutlet UIVisualEffectView *effectView;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 
 @property (weak, nonatomic) IBOutlet UIButton *prevButton;
@@ -76,6 +79,8 @@
     
     // 接收音频控制事件(耳机操作)
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    
+    self.effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
 }
 
 - (void)dealloc {
@@ -115,8 +120,9 @@
     if (object == self && [keyPath isEqualToString:@"self.musicPlayer.isPlaying"]) {
         BOOL isPlaying = [change[NSKeyValueChangeNewKey] boolValue];
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *title = isPlaying ? @"暂停" : @"播放";
-            [self.playButton setTitle:title forState:UIControlStateNormal];
+            NSString *imageName = isPlaying ? @"btn_pause" : @"btn_play";
+            UIImage *image = [UIImage imageNamed:imageName];
+            [self.playButton setImage:image forState:UIControlStateNormal];
         });
     }
 }
@@ -238,9 +244,8 @@
     if (!_draggingSlider)
         return;
     
-    // 更新_currentTimeLabel和_durationTimeLabel
+    // 更新_currentTimeLabel
 //    int position = _timeSlider.value;
-//    int duration = _timeSlider.maximumValue;
 
 }
 
