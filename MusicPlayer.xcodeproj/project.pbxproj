@@ -19,7 +19,18 @@
 		A3E3A29223716850005CE53A /* JYMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3A29123716850005CE53A /* JYMusicPlayer.m */; };
 		A3E3A29E2373FF06005CE53A /* JYKrcInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3A29D2373FF06005CE53A /* JYKrcInfo.m */; };
 		A3E3A2A12373FF1A005CE53A /* JYLrcInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3A2A02373FF1A005CE53A /* JYLrcInfo.m */; };
+		A3E3A2AA23746A29005CE53A /* MusicPlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3A2A923746A29005CE53A /* MusicPlayerTests.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A3E3A2AC23746A29005CE53A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3AF167223517499006C2B65 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3AF167923517499006C2B65;
+			remoteInfo = MusicPlayer;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A3A0AA5423714DE7008FF674 /* Songs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Songs; sourceTree = "<group>"; };
@@ -42,10 +53,20 @@
 		A3E3A29D2373FF06005CE53A /* JYKrcInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYKrcInfo.m; sourceTree = "<group>"; };
 		A3E3A29F2373FF1A005CE53A /* JYLrcInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYLrcInfo.h; sourceTree = "<group>"; };
 		A3E3A2A02373FF1A005CE53A /* JYLrcInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYLrcInfo.m; sourceTree = "<group>"; };
+		A3E3A2A723746A29005CE53A /* MusicPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3E3A2A923746A29005CE53A /* MusicPlayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerTests.m; sourceTree = "<group>"; };
+		A3E3A2AB23746A29005CE53A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A3AF167723517499006C2B65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3E3A2A423746A29005CE53A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -62,6 +83,7 @@
 				A3E3A2952373FD74005CE53A /* Lyric */,
 				A3AF169323517620006C2B65 /* Player */,
 				A3AF167C23517499006C2B65 /* MusicPlayer */,
+				A3E3A2A823746A29005CE53A /* MusicPlayerTests */,
 				A3AF167B23517499006C2B65 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				A3AF167A23517499006C2B65 /* MusicPlayer.app */,
+				A3E3A2A723746A29005CE53A /* MusicPlayerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,6 +136,15 @@
 			path = Lyric;
 			sourceTree = "<group>";
 		};
+		A3E3A2A823746A29005CE53A /* MusicPlayerTests */ = {
+			isa = PBXGroup;
+			children = (
+				A3E3A2A923746A29005CE53A /* MusicPlayerTests.m */,
+				A3E3A2AB23746A29005CE53A /* Info.plist */,
+			);
+			path = MusicPlayerTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -133,6 +165,24 @@
 			productReference = A3AF167A23517499006C2B65 /* MusicPlayer.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A3E3A2A623746A29005CE53A /* MusicPlayerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3E3A2AE23746A29005CE53A /* Build configuration list for PBXNativeTarget "MusicPlayerTests" */;
+			buildPhases = (
+				A3E3A2A323746A29005CE53A /* Sources */,
+				A3E3A2A423746A29005CE53A /* Frameworks */,
+				A3E3A2A523746A29005CE53A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A3E3A2AD23746A29005CE53A /* PBXTargetDependency */,
+			);
+			name = MusicPlayerTests;
+			productName = MusicPlayerTests;
+			productReference = A3E3A2A723746A29005CE53A /* MusicPlayerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -144,6 +194,10 @@
 				TargetAttributes = {
 					A3AF167923517499006C2B65 = {
 						CreatedOnToolsVersion = 10.3;
+					};
+					A3E3A2A623746A29005CE53A = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = A3AF167923517499006C2B65;
 					};
 				};
 			};
@@ -161,6 +215,7 @@
 			projectRoot = "";
 			targets = (
 				A3AF167923517499006C2B65 /* MusicPlayer */,
+				A3E3A2A623746A29005CE53A /* MusicPlayerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -175,6 +230,13 @@
 				A3B4902F23628CEA00C693EE /* JYMusicPlayerController.xib in Resources */,
 				A3AF16872351749B006C2B65 /* Assets.xcassets in Resources */,
 				A3AF168523517499006C2B65 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3E3A2A523746A29005CE53A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +257,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A3E3A2A323746A29005CE53A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3E3A2AA23746A29005CE53A /* MusicPlayerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A3E3A2AD23746A29005CE53A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A3AF167923517499006C2B65 /* MusicPlayer */;
+			targetProxy = A3E3A2AC23746A29005CE53A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A3AF168323517499006C2B65 /* Main.storyboard */ = {
@@ -367,6 +445,68 @@
 			};
 			name = Release;
 		};
+		A3E3A2AF23746A29005CE53A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 68FTAEX25T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = MusicPlayerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jerryyum.MusicPlayerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MusicPlayer.app/MusicPlayer";
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
+			};
+			name = Debug;
+		};
+		A3E3A2B023746A29005CE53A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 68FTAEX25T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = MusicPlayerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jerryyum.MusicPlayerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MusicPlayer.app/MusicPlayer";
+				USER_HEADER_SEARCH_PATHS = "$(inherited)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -384,6 +524,15 @@
 			buildConfigurations = (
 				A3AF16912351749B006C2B65 /* Debug */,
 				A3AF16922351749B006C2B65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3E3A2AE23746A29005CE53A /* Build configuration list for PBXNativeTarget "MusicPlayerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3E3A2AF23746A29005CE53A /* Debug */,
+				A3E3A2B023746A29005CE53A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

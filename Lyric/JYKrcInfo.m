@@ -43,7 +43,7 @@
 
 - (instancetype)initWithKrcContent:(NSString *)content {
     self = [super init];
-    _krcLines = [NSMutableArray arrayWithCapacity:30];
+    _krcLines = [NSMutableArray arrayWithCapacity:32];
     [self parseKrcContent:content];
     return self;
 }
