@@ -25,6 +25,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+
 @property (weak, nonatomic) IBOutlet UISlider *timeSlider;
 @property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *durationLabel;

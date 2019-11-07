@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JYMusicPlayerController">
             <connections>
                 <outlet property="backgroundImageView" destination="1DT-ne-oh5" id="WSv-TI-0ra"/>
+                <outlet property="contentView" destination="WpW-zp-ryN" id="wKg-9E-LNA"/>
                 <outlet property="currentTimeLabel" destination="CJB-n0-RoX" id="tqg-jG-ffy"/>
                 <outlet property="durationLabel" destination="od2-wg-yei" id="mSa-hU-go5"/>
                 <outlet property="effectView" destination="oyK-zb-JH8" id="z2m-Xv-frj"/>
@@ -61,39 +62,43 @@
                         <constraint firstItem="4vV-JL-t8w" firstAttribute="centerX" secondItem="uCR-GJ-gRD" secondAttribute="centerX" id="f0Q-xp-9dY"/>
                     </constraints>
                 </view>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WpW-zp-ryN">
+                    <rect key="frame" x="0.0" y="130" width="414" height="472"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zxd-Rc-D24">
-                    <rect key="frame" x="0.0" y="705" width="414" height="137"/>
+                    <rect key="frame" x="0.0" y="622" width="414" height="220"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LIR-qs-XZa">
-                            <rect key="frame" x="19.5" y="65.5" width="44" height="44"/>
+                            <rect key="frame" x="-2.5" y="85" width="88" height="88"/>
                             <state key="normal" image="cm2_icn_loop"/>
                             <connections>
                                 <action selector="loopButtonClicked:" destination="-1" eventType="touchUpInside" id="6a4-q6-jEJ"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTY-Uc-pxh">
-                            <rect key="frame" x="89.5" y="63" width="49" height="49"/>
+                            <rect key="frame" x="65" y="80" width="98" height="98"/>
                             <state key="normal" image="cm2_play_btn_prev"/>
                             <connections>
                                 <action selector="prevButtonClicked:" destination="-1" eventType="touchUpInside" id="gpc-HF-s1m"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7sX-uJ-cmh">
-                            <rect key="frame" x="165.5" y="46" width="83" height="83"/>
+                            <rect key="frame" x="124" y="46" width="166" height="166"/>
                             <state key="normal" image="cm2_runfm_btn_play"/>
                             <connections>
                                 <action selector="playButtonClicked:" destination="-1" eventType="touchUpInside" id="WhD-ZQ-qrI"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="peG-KV-wuU">
-                            <rect key="frame" x="350.5" y="65.5" width="44" height="44"/>
+                            <rect key="frame" x="328.5" y="85" width="88" height="88"/>
                             <state key="normal" image="cm2_icn_list"/>
                             <connections>
                                 <action selector="listButtonClicked:" destination="-1" eventType="touchUpInside" id="RTu-SL-Hme"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqd-NE-DOT">
-                            <rect key="frame" x="273" y="60.5" width="54" height="54"/>
+                            <rect key="frame" x="246" y="75" width="108" height="108"/>
                             <state key="normal" image="cm2_runfm_btn_next"/>
                             <connections>
                                 <action selector="nextButtonClicked:" destination="-1" eventType="touchUpInside" id="8mx-kS-Uvr"/>
@@ -157,13 +162,17 @@
                 <constraint firstItem="Zxd-Rc-D24" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="6w3-Lf-xWZ"/>
                 <constraint firstAttribute="bottom" secondItem="1DT-ne-oh5" secondAttribute="bottom" id="Aod-xy-kJH"/>
                 <constraint firstItem="uCR-GJ-gRD" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="FGF-6M-mGQ"/>
+                <constraint firstItem="WpW-zp-ryN" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="K3L-O3-zJD"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="WpW-zp-ryN" secondAttribute="trailing" id="Wi3-zs-Lw0"/>
                 <constraint firstItem="1DT-ne-oh5" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="ai0-Vk-ThJ"/>
                 <constraint firstItem="1DT-ne-oh5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bFh-uc-rHo"/>
                 <constraint firstItem="uCR-GJ-gRD" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="22" id="er7-Oj-8tw"/>
+                <constraint firstItem="WpW-zp-ryN" firstAttribute="top" secondItem="uCR-GJ-gRD" secondAttribute="bottom" constant="20" id="i6n-h4-1OG"/>
                 <constraint firstItem="uCR-GJ-gRD" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="mGN-Bd-PT7"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="Zxd-Rc-D24" secondAttribute="trailing" id="qVA-NJ-krY"/>
                 <constraint firstItem="1DT-ne-oh5" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="tsn-gU-wp6"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="Zxd-Rc-D24" secondAttribute="bottom" constant="20" id="wum-yG-5Up"/>
+                <constraint firstItem="Zxd-Rc-D24" firstAttribute="top" secondItem="WpW-zp-ryN" secondAttribute="bottom" constant="20" id="yur-SO-frz"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="131.8840579710145" y="123.88392857142857"/>
