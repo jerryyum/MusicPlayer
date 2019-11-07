@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *effectView;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
 @property (weak, nonatomic) IBOutlet UISlider *timeSlider;
 @property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *durationLabel;
@@ -69,9 +71,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSArray<NSString *> *songs = @[@"王菲-平凡最浪漫.mp3",
-                                   @"容易受伤的女人.mp3",
-                                   @"Groove Coverage - God Is A Girl.mp3"];
+    NSArray<NSString *> *songs = @[@"王菲-平凡最浪漫",
+                                   @"容易受伤的女人",
+                                   @"Groove Coverage - God Is A Girl"];
     
     self.musicPlayer = [[JYMusicPlayer alloc] init];
     [self.musicPlayer addSongs:songs];
@@ -105,6 +107,7 @@
 #pragma mark - Observer
 
 - (void)addObserver {
+    [self addObserver:self forKeyPath:@"self.musicPlayer.playingIdx" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:nil];
     [self addObserver:self forKeyPath:@"self.musicPlayer.isPlaying" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:nil];
     [self addObserver:self forKeyPath:@"self.musicPlayer.loopMode" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:nil];
     
@@ -113,6 +116,7 @@
 }
 
 - (void)removeObserver {
+    [self removeObserver:self forKeyPath:@"self.musicPlayer.playingIdx" context:nil];
     [self removeObserver:self forKeyPath:@"self.musicPlayer.isPlaying" context:nil];
     [self removeObserver:self forKeyPath:@"self.musicPlayer.loopMode" context:nil];
     
@@ -122,7 +126,14 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
 
     if (object == self) {
-        if ([keyPath isEqualToString:@"self.musicPlayer.isPlaying"]) {
+        if ([keyPath isEqualToString:@"self.musicPlayer.playingIdx"]) {
+            NSInteger playingIdx = [change[NSKeyValueChangeNewKey] integerValue];
+            NSString *song = self.musicPlayer.songs[playingIdx];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.titleLabel.text = song;
+            });
+            
+        } else if ([keyPath isEqualToString:@"self.musicPlayer.isPlaying"]) {
             BOOL isPlaying = [change[NSKeyValueChangeNewKey] boolValue];
             NSString *imageName = isPlaying ? @"cm2_runfm_btn_pause" : @"cm2_runfm_btn_play";
             dispatch_async(dispatch_get_main_queue(), ^{

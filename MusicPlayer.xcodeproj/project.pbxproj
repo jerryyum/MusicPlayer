@@ -53,7 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				A3A0AA5423714DE7008FF674 /* Songs */,
-				A3AF169323517620006C2B65 /* Classes */,
+				A3AF169323517620006C2B65 /* Player */,
 				A3AF167C23517499006C2B65 /* MusicPlayer */,
 				A3AF167B23517499006C2B65 /* Products */,
 			);
@@ -83,7 +83,7 @@
 			path = MusicPlayer;
 			sourceTree = "<group>";
 		};
-		A3AF169323517620006C2B65 /* Classes */ = {
+		A3AF169323517620006C2B65 /* Player */ = {
 			isa = PBXGroup;
 			children = (
 				A3E3A29023716850005CE53A /* JYMusicPlayer.h */,
@@ -92,7 +92,7 @@
 				A3B4902C23628CEA00C693EE /* JYMusicPlayerController.m */,
 				A3B4902D23628CEA00C693EE /* JYMusicPlayerController.xib */,
 			);
-			path = Classes;
+			path = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

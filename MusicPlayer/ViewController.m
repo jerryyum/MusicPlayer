@@ -23,6 +23,19 @@
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:controller.view];
     [self addChildViewController:controller];
+    
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    //self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    //[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 

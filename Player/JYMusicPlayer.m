@@ -145,7 +145,7 @@
         self.playingIdx = index;
         
         NSString *song = _songs[_playingIdx];
-        NSURL *songURL = [[NSBundle mainBundle] URLForResource:song withExtension:nil subdirectory:@"Songs"];
+        NSURL *songURL = [[NSBundle mainBundle] URLForResource:song withExtension:@"mp3" subdirectory:@"Songs"];
         _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:songURL error:nil];
         _audioPlayer.volume = 1.f;
         _audioPlayer.delegate = self;
