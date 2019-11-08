@@ -11,31 +11,33 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- lrc单句歌词模型, 开始时间+歌词内容
+ lrc 单句歌词模型, 开始时间+歌词内容
+ 例: [01:54.18][00:18.81]平凡地与你看看电影
  */
 @interface JYLrcLine : NSObject
 
-@property (assign, nonatomic) int startTime;       // 歌词开始时间, 单位ms
-@property (copy, nonatomic) NSString *lrcLineStr;  // 歌词的内容
-
-- (instancetype)initWithStartTime:(int)startTime lrcLineStr:(NSString *)lrcLineStr;
+@property (nonatomic, assign) int startTime;    // 歌词开始时间, 单位ms
+@property (nonatomic, copy) NSString *lineText; // 歌词的内容
 
 @end
 
 /**
- lrc格式歌词信息, 每行歌词一个时间, 时间只能精确到每行歌词
+ 整首歌曲的 lrc 格式歌词信息.
+ lrc 歌词, 每行歌词一个时间, 时间只能精确到每行歌词
  */
 @interface JYLrcInfo : NSObject
 
-@property (copy, nonatomic) NSString *title;   // 歌曲名
-@property (copy, nonatomic) NSString *singer;  // 演唱者
-@property (copy, nonatomic) NSString *album;   // 专辑
-@property (copy, nonatomic) NSString *language;// 语言
+@property (nonatomic, copy) NSString *title;   // 歌曲名
+@property (nonatomic, copy) NSString *artist;  // 演唱者
+@property (nonatomic, copy) NSString *album;   // 专辑
+@property (nonatomic, copy) NSString *language;// 语言
+@property (nonatomic, assign) int offset;      // 全局偏移量
 
-@property (strong, nonatomic) NSMutableArray<JYLrcLine *> *lrcLineArray;
+@property (nonatomic, strong) NSMutableArray<JYLrcLine *> *lrcLines;
 
-- (instancetype)initWithLrcContent:(NSString *)lrcContent; // lrcContent为歌词文件内容
-- (instancetype)initWithLrcPath:(NSString *)lrcPath;       // lrcPath为歌词文件路径
+/// 根据文件内容构造整个 lrc 信息
+/// @param content 歌词文件内容
+- (instancetype)initWithLrcContent:(NSString *)content;
 
 @end
 

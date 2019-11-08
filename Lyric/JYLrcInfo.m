@@ -10,85 +10,58 @@
 
 @implementation JYLrcLine
 
-- (instancetype)initWithStartTime:(int)startTime lrcLineStr:(NSString *)lrcLineStr {
-    self = [super init];
-    self.startTime = startTime;
-    self.lrcLineStr = lrcLineStr;
-    return self;
-}
-
 @end
 
 @implementation JYLrcInfo
 
-- (instancetype)initWithLrcContent:(NSString *)lrcContent {
+- (instancetype)initWithLrcContent:(NSString *)content {
     self = [super init];
-    self.lrcLineArray = [NSMutableArray array];
-    [self parseLrcContent:lrcContent];
+    self.lrcLines = [NSMutableArray array];
+    [self parseLrcContent:content];
     return self;
 }
 
-- (instancetype)initWithLrcPath:(NSString *)lrcPath {
-    NSString *lrcContent;
-    if ([[lrcPath substringWithRange:NSMakeRange(0, 4)] isEqualToString:@"http"]) { // 网络歌词
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:lrcPath]];
-        if (data) {
-            lrcContent = [NSString stringWithUTF8String:data.bytes];
-        }
-    } else {
-        lrcContent = [NSString stringWithContentsOfFile:lrcPath usedEncoding:nil error:nil];
-    }
-    
-    return [self initWithLrcContent:lrcContent];
-}
-
-- (void)parseLrcContent:(NSString *)lrcContent {
-    if (lrcContent == nil) {
+- (void)parseLrcContent:(NSString *)content {
+    if (content == nil) {
         return;
     }
     
-    NSRange r4 = {0, 4}; // 头部标记的Range
     NSString *patten = @"\\[(\\d{2}:\\d{2}\\.\\d{2})\\]"; // 匹配歌词时间的正则表达式
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:patten options:NSRegularExpressionCaseInsensitive error:nil];
     NSDateFormatter *formatter = [NSDateFormatter new];
     formatter.dateFormat = @"[mm:ss.SS]";
     NSDate *beginDate = [formatter dateFromString:@"[00:00.00]"];
     
-    [lrcContent enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+    [content enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
         
-        if (NSEqualRanges([line rangeOfString:@"[ti:"], r4)) { // 歌曲名信息
-            NSRange range = {4, line.length-5};
-            _title = [line substringWithRange:range];
-        } else if (NSEqualRanges([line rangeOfString:@"[ar:"], r4)) { // 歌手信息
-            NSRange range = {4, line.length-5};
-            _singer = [line substringWithRange:range];
-        } else if (NSEqualRanges([line rangeOfString:@"[al:"], r4)) { // 专辑信息
-            NSRange range = {4, line.length-5};
-            _album = [line substringWithRange:range];
-        } else if (NSEqualRanges([line rangeOfString:@"[la:"], r4)) { // 语言信息
-            NSRange range = {4, line.length-5};
-            _language = [line substringWithRange:range];
+        if ([line hasPrefix:@"[ti:"]) { // 歌曲名
+            self.title = [line substringWithRange:NSMakeRange(4, line.length-5)];
+        } else if ([line hasPrefix:@"[ar:"]) { // 艺术家
+            self.artist = [line substringWithRange:NSMakeRange(4, line.length-5)];
+        } else if ([line hasPrefix:@"[al:"]) { // 专辑
+            self.album = [line substringWithRange:NSMakeRange(4, line.length-5)];
+        } else if ([line hasPrefix:@"[la:"]) { // 语言
+            self.album = [line substringWithRange:NSMakeRange(4, line.length-5)];
+        } else if ([line hasPrefix:@"[offset:"]) { // 全局偏移量
+            self.offset = [[line substringWithRange:NSMakeRange(8, line.length-9)] intValue];
         } else if (line.length > 0) { // 歌词信息
-
-            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:patten
-                                                                                   options:NSRegularExpressionCaseInsensitive
-                                                                                     error:nil];
-            NSArray *matches = [regex matchesInString:line
-                                              options:NSMatchingReportCompletion
-                                                range:NSMakeRange(0, line.length)];
+            
+            NSArray<NSTextCheckingResult *> *matches = [regex matchesInString:line options:NSMatchingReportCompletion range:NSMakeRange(0, line.length)];
             
             // 获取歌词内容
             NSTextCheckingResult *lastResult = [matches lastObject];
-            NSString *lrcLineStr = [line substringFromIndex:lastResult.range.location + lastResult.range.length];
+            NSString *lineText = [line substringFromIndex:lastResult.range.location + lastResult.range.length];
             
-            // 获取每一个结果值, 解析成时间间隔, 并与该行的歌词生成KtvAtomLyric对象, 加入到结果数组中
+            // 获取每一个结果值, 解析成时间间隔, 并与该行的歌词生成 JYLrcLine 对象, 加入到结果数组中
             for (NSTextCheckingResult *match in matches) {
-                
                 NSString *timeStr = [line substringWithRange:match.range]; // 歌词的时间
                 NSDate *currentDate = [formatter dateFromString:timeStr];
                 NSTimeInterval time = [currentDate timeIntervalSinceDate:beginDate];
 
-                JYLrcLine *atomLyric = [[JYLrcLine alloc] initWithStartTime:time*1000 lrcLineStr:lrcLineStr];
-                [self.lrcLineArray addObject:atomLyric];
+                JYLrcLine *lrcLine = [[JYLrcLine alloc] init];
+                lrcLine.startTime = 1000 * time;
+                lrcLine.lineText = lineText;
+                [self.lrcLines addObject:lrcLine];
             }
         }
     }];
@@ -97,7 +70,7 @@
     // sortUsingDescriptors: 可变数组的排序方法, 可以传多个排序条件
     // NSSortDescriptor: 排序描述类, 需要告诉按照那个key, ascending: 是否升序
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
-    [self.lrcLineArray sortUsingDescriptors:@[sort]];
+    [self.lrcLines sortUsingDescriptors:@[sort]];
 }
 
 @end

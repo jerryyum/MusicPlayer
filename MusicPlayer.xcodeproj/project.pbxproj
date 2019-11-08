@@ -20,6 +20,7 @@
 		A3E3A29E2373FF06005CE53A /* JYKrcInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3A29D2373FF06005CE53A /* JYKrcInfo.m */; };
 		A3E3A2A12373FF1A005CE53A /* JYLrcInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3A2A02373FF1A005CE53A /* JYLrcInfo.m */; };
 		A3E3A2AA23746A29005CE53A /* MusicPlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3A2A923746A29005CE53A /* MusicPlayerTests.m */; };
+		A3F342772374FD330048C7A8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F342752374FC830048C7A8 /* XCTest.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		A3E3A2A723746A29005CE53A /* MusicPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3E3A2A923746A29005CE53A /* MusicPlayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicPlayerTests.m; sourceTree = "<group>"; };
 		A3E3A2AB23746A29005CE53A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3F342752374FC830048C7A8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3F342772374FD330048C7A8 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +88,7 @@
 				A3AF167C23517499006C2B65 /* MusicPlayer */,
 				A3E3A2A823746A29005CE53A /* MusicPlayerTests */,
 				A3AF167B23517499006C2B65 /* Products */,
+				A3F342742374FC830048C7A8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +147,14 @@
 				A3E3A2AB23746A29005CE53A /* Info.plist */,
 			);
 			path = MusicPlayerTests;
+			sourceTree = "<group>";
+		};
+		A3F342742374FC830048C7A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A3F342752374FC830048C7A8 /* XCTest.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -76,40 +76,42 @@
             
             NSTextCheckingResult *matches1 = [regexLine firstMatchInString:line options:NSMatchingReportCompletion range:NSMakeRange(0, line.length)];
             if (matches1 != nil) { // 不为空则为歌词行
-                NSString *linePrefix = [line substringToIndex:matches1.range.length]; // 歌词的时间, 例[16335,4422]
+                NSString *linePrefix = [line substringToIndex:matches1.range.length]; // 歌词的时间, 例[2635,1750]
                 NSString *lineSuffix = [line substringFromIndex:matches1.range.location + matches1.range.length]; // 歌词的每个字和时间, 例<0,200,0>王<200,250,0>菲
                 
                 NSArray<NSString *> *strArray = [linePrefix componentsSeparatedByCharactersInSet:sepCharSet];
                 if (strArray.count > 3) {
-                    JYKrcLine *krcLine = [[JYKrcLine alloc] init];
-                    krcLine.startTime = [strArray[1] intValue];
-                    krcLine.spanTime = [strArray[2] intValue];
-                    krcLine.krcAtoms = [NSMutableArray arrayWithCapacity:20];
-                    [self.krcLines addObject:krcLine];
-                    
                     NSArray<NSTextCheckingResult *> *matches2 = [regexAtom matchesInString:lineSuffix options:NSMatchingReportCompletion range:NSMakeRange(0, lineSuffix.length)];
+                    NSMutableArray<JYKrcAtom *> *krcAtoms = [NSMutableArray arrayWithCapacity:matches2.count];
+                    
                     for (int i = 0; i < matches2.count; i++) {
                         NSTextCheckingResult *match = matches2[i];
                         NSString *atomTime = [lineSuffix substringWithRange:match.range];
-                        NSString *atomStr;
+                        NSString *atomText;
                         if (i < matches2.count-1) {
                             NSTextCheckingResult *nextMatch = matches2[i+1];
-                            NSRange range = {match.range.location + match.range.length, nextMatch.range.location-match.range.location - match.range.length};
-                            atomStr = [lineSuffix substringWithRange:range];
-                        } else {
-                            atomStr = [lineSuffix substringFromIndex:match.range.location + match.range.length];
+                            NSRange range = {match.range.location + match.range.length, nextMatch.range.location - match.range.location - match.range.length};
+                            atomText = [lineSuffix substringWithRange:range];
+                        } else { // 最后一个段
+                            atomText = [lineSuffix substringFromIndex:match.range.location + match.range.length];
                         }
 
-                        NSArray *atomTimes = [atomTime componentsSeparatedByCharactersInSet:sepCharSet];
+                        NSArray<NSString *> *atomTimes = [atomTime componentsSeparatedByCharactersInSet:sepCharSet];
                         if (atomTimes.count > 4) {
-                            JYKrcAtom *atomKrc = [[JYKrcAtom alloc] init];
-                            atomKrc.startTime = [atomTimes[1] intValue];
-                            atomKrc.spanTime = [atomTimes[2] intValue];
-                            atomKrc.reverse = [atomTimes[3] intValue];
-                            atomKrc.atomText = atomStr;
-                            [krcLine.krcAtoms addObject:atomKrc];
+                            JYKrcAtom *krcAtom = [[JYKrcAtom alloc] init];
+                            krcAtom.startTime = [atomTimes[1] intValue];
+                            krcAtom.spanTime = [atomTimes[2] intValue];
+                            krcAtom.reverse = [atomTimes[3] intValue];
+                            krcAtom.atomText = atomText;
+                            [krcAtoms addObject:krcAtom];
                         }
                     }
+                    
+                    JYKrcLine *krcLine = [[JYKrcLine alloc] init];
+                    krcLine.startTime = [strArray[1] intValue];
+                    krcLine.spanTime = [strArray[2] intValue];
+                    krcLine.krcAtoms = [krcAtoms copy];
+                    [self.krcLines addObject:krcLine];
                 }
             }
         }

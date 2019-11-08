@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- krc 歌词的最小的单元(单个字及时间段), 时间的单位都是 ms
+ krc 歌词的最小的单元[段](单个字及时间段), 时间的单位都是 ms
  示例: <0,200,0>王
  */
 @interface JYKrcAtom : NSObject
@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) int startTime; // 歌词行开始时间, 从歌曲起点开始计算
 @property (nonatomic, assign) int spanTime;  // 歌词行持续时间
-@property (nonatomic, strong) NSMutableArray<JYKrcAtom *> *krcAtoms; // 一行歌词包含的基本段
+@property (nonatomic, strong) NSArray<JYKrcAtom *> *krcAtoms; // 一行歌词包含的基本段
 
 /// 获取该行的歌词字符串
 - (NSString *)getKrcLineText;
@@ -67,8 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableArray<JYKrcLine *> *krcLines; // 整首krc包含的歌词行
 
-/// 根据文件内容构造整个krc信息
-/// @param content 为歌词文件内容
+/// 根据文件内容构造整个 krc 信息
+/// @param content 歌词文件内容
 - (instancetype)initWithKrcContent:(NSString *)content;
 
 @end
