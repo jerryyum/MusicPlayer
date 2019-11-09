@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "JYKrcInfo.h"
+
 
 @interface MusicPlayerTests : XCTestCase
 
@@ -35,16 +35,6 @@
     }];
 }
 
-- (void)testKrcParser {
-    NSURL *krcURL = [[NSBundle mainBundle] URLForResource:@"王菲-平凡最浪漫" withExtension:@"krc" subdirectory:@"Songs"];
-    NSError *error = nil;
-    NSString *krcContent = [NSString stringWithContentsOfURL:krcURL usedEncoding:nil error:&error];
-    XCTAssert(error == nil, @"Get file content error: %@", error);
-    
-    if (krcContent != nil) {
-        JYKrcInfo *krcInfo = [[JYKrcInfo alloc] initWithKrcContent:krcContent];
-        NSLog(@"KrcInfo: %@", krcInfo);
-    }
-}
+
 
 @end

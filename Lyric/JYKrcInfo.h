@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *language;// 语言
 @property (nonatomic, assign) int offset;      // 全局偏移量
 
-@property (nonatomic, strong) NSMutableArray<JYKrcLine *> *krcLines; // 整首krc包含的歌词行
+@property (nonatomic, strong) NSMutableArray<JYKrcLine *> *krcLines; // 整首 krc 包含的歌词行
 
 /// 根据文件内容构造整个 krc 信息
 /// @param content 歌词文件内容

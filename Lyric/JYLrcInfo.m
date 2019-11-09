@@ -16,7 +16,7 @@
 
 - (instancetype)initWithLrcContent:(NSString *)content {
     self = [super init];
-    self.lrcLines = [NSMutableArray array];
+    self.lrcLines = [NSMutableArray arrayWithCapacity:64];
     [self parseLrcContent:content];
     return self;
 }

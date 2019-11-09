@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *language;// 语言
 @property (nonatomic, assign) int offset;      // 全局偏移量
 
-@property (nonatomic, strong) NSMutableArray<JYLrcLine *> *lrcLines;
+@property (nonatomic, strong) NSMutableArray<JYLrcLine *> *lrcLines; // 整首 lrc 包含的歌词行
 
 /// 根据文件内容构造整个 lrc 信息
 /// @param content 歌词文件内容
