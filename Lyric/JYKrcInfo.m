@@ -10,6 +10,10 @@
 
 @implementation JYKrcAtom
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%d,%d,%d>%@", _startTime,_spanTime, _reverse, _atomText];
+}
+
 @end
 
 
@@ -34,6 +38,10 @@
         *stop = idx == index-1;
     }];
     return [lineText copy];
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"[%d,%d]%@", _startTime, _spanTime, _krcAtoms];
 }
 
 @end
@@ -116,6 +124,11 @@
             }
         }
     }];
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"[ti:%@]\n[ar:%@]\n[al:%@]\n[la:%@]\n[offset:%d]\n%@\n",
+            _title ?: @"", _artist ?: @"", _album ?: @"", _language ?: @"", _offset, _krcLines];
 }
 
 @end

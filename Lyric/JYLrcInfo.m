@@ -10,6 +10,10 @@
 
 @implementation JYLrcLine
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"[%d]%@", _startTime, _lineText];
+}
+
 @end
 
 @implementation JYLrcInfo
@@ -71,6 +75,11 @@
     // NSSortDescriptor: 排序描述类, 需要告诉按照那个key, ascending: 是否升序
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
     [self.lrcLines sortUsingDescriptors:@[sort]];
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"[ti:%@]\n[ar:%@]\n[al:%@]\n[la:%@]\n[offset:%d]\n%@\n",
+            _title ?: @"", _artist ?: @"", _album ?: @"", _language ?: @"", _offset, _lrcLines];
 }
 
 @end

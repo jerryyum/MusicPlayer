@@ -61,10 +61,9 @@
     }
     
     NSInteger nextIndex = INVALID_PLAYING_INDEX;
-    if (_loopMode == PlayerLoopAll) {
+    if (_loopMode == PlayerLoopAll || _loopMode == PlayerLoopSingle) {
         nextIndex = (_playingIdx + 1) % _songs.count;
-    } else if (_loopMode == PlayerLoopSingle) {
-        nextIndex = _playingIdx == INVALID_PLAYING_INDEX ? 0 : _playingIdx;
+        
     } else if (_loopMode == PlayerLoopShuffle) {
         NSUInteger songCount = _songs.count;
         nextIndex = arc4random_uniform((u_int32_t)songCount); // 产生随机数

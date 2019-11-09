@@ -45,7 +45,7 @@
     
     if (krcContent != nil) {
         JYKrcInfo *krcInfo = [[JYKrcInfo alloc] initWithKrcContent:krcContent];
-        NSLog(@"KrcInfo: %@", krcInfo);
+        NSLog(@"KrcInfo: \n%@", krcInfo);
     }
 }
 
@@ -58,7 +58,7 @@
     
     if (lrcContent != nil) {
         JYLrcInfo *lrcInfo = [[JYLrcInfo alloc] initWithLrcContent:lrcContent];
-        NSLog(@"LrcInfo: %@", lrcInfo);
+        NSLog(@"LrcInfo: \n%@", lrcInfo);
     }
 }
 
